@@ -8,7 +8,7 @@ function getMembersName(member) {
     var firstName = member.first_name;
     var middleName = member.middle_name;
     if (middleName == null) {
-        middleName = ""
+        middleName = "";
     }
     console.log(lastName, firstName, middleName);
     // return lastName + ", " + firstName + " " + middleName;

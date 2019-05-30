@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Congress 113
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">House</a>
+                        <a class="dropdown-item" href="senate-data.html">Senate</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Table container-->
+    <div>
+        <h2>Congressmen</h2>
+        <p>The major power of the House is to pass federal legislation that affects the entire country, although its
+            bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law
+            (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The
+            House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached
+            officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no
+            majority in the Electoral College.</p>
+        <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but
+            every state is entitled to at least one representative. </p>
+        <div>
+            <table id="senate-data" class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Members</th>
+                        <th>Party</th>
+                        <th>State</th>
+                        <th>Seniority</th>
+                        <th>Total votes</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="/js/pro-congress-113-house.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
