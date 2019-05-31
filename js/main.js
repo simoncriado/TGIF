@@ -27,8 +27,19 @@ function createTable(members) {
         var td3 = document.createElement("td");
         var td4 = document.createElement("td");
         var td5 = document.createElement("td");
+        if (members[i].url != "") {
+            var membersUrl = document.createElement("a");
+            membersUrl.setAttribute("href", members[i].url);
 
-        td1.innerHTML = getMembersName(members[i]);
+            membersUrl.setAttribute("target", "_blank");
+            membersUrl.innerHTML = getMembersName(members[i]);
+
+
+            td1.append(membersUrl);
+        }
+        else {
+            td1.append(getMembersName(members[i]));
+        }
         td2.innerHTML = members[i].party;
         td3.innerHTML = members[i].state;
         td4.innerHTML = members[i].seniority;
@@ -36,5 +47,20 @@ function createTable(members) {
         tr.append(td1, td2, td3, td4, td5);
 
         tbody.append(tr);
+    }
+}
+function myFunction() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("myBtn");
+
+    if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+    } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
     }
 }

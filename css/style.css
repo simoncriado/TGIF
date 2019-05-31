@@ -1,17 +1,28 @@
-
-.container {
-    width: 95%;
-    margin: auto;
+/* ****** HEADER ****** */
+.header {
+    height: 100px;
 }
-.text {
-    
+.logo {
+    width: 400px;
+    height: 250;
+    position: absolute;
+    top: -60px;
 }
 .mail {
-    text-align: right;
+    position: absolute;
+    right: 2%;
+    top: 45px;
 }
-
-.text p {
+.mailStyle {
+    color: rgb(32, 117, 156);
+    font-size: 30px;
+}
+/* ****** BODY ****** */
+.text {
+    padding-top: 30px;
+}
+.indent {
     text-indent: 30px;
 }
-.navbar {
-}
+/* ****** READ MORE ****** */
+#more {display: none;}
