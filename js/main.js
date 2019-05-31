@@ -15,7 +15,7 @@ function getMembersName(member) {
     return `${lastName}, ${firstName} ${middleName}`;
 }
 
-// Creates the table of senators
+// Creates the table of members
 function createTable(members) {
     var tbody = document.getElementById("table-body");
 
@@ -49,6 +49,8 @@ function createTable(members) {
         tbody.append(tr);
     }
 }
+
+// Read more / read less button
 function myFunction() {
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
