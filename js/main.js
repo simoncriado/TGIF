@@ -34,7 +34,6 @@ function createTable(members) {
             membersUrl.setAttribute("target", "_blank");
             membersUrl.innerHTML = getMembersName(members[i]);
 
-
             td1.append(membersUrl);
         }
         else {
