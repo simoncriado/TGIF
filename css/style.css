@@ -27,11 +27,14 @@
 }
 .glance {
     display: inline-block;
-    width: 545px;
+    width: 552px;
 }
 .glanceTable {
     vertical-align: top;
     padding-top: 30px;
+}
+.firstTable {
+    padding-right: 30px;
 }
 /* ****** READ MORE ****** */
 #more {display: none;}
