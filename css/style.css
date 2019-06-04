@@ -23,6 +23,16 @@
 }
 .indent {
     text-indent: 30px;
+    padding-right: 30px;
+}
+.glance {
+    display: inline-block;
+    width: 545px;
+}
+.glanceTable {
+    vertical-align: top;
+    padding-top: 30px;
 }
 /* ****** READ MORE ****** */
 #more {display: none;}
+
