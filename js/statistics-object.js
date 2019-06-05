@@ -43,6 +43,8 @@ statistics.totals.averageVotes = ((Number(statistics.democrats.averageVotes) + N
 console.log(statistics);
 
 createTableGlance(statistics);
+createTableEngage(leastEngagedMembers(arrayOfMembers, "missed_votes_pct"), "tbody-engage");
+createTableEngage(mostEngagedMembers(arrayOfMembers, "missed_votes_pct"), "tbody-mostengage");
 
 // Gets the number of members based on each party
 function numberOfMembers(members, letter) {
@@ -67,7 +69,7 @@ function averageVotes(members, letter) {
     return votesByParty;
 }
 
-// Checks for 0 values to avoid problems with averages
+// Checks for 0 values to avoid problems when calculating averages
 function normalizer(array) {
     if (averageVotes(array, "D") !== 0) {
         statistics.democrats.averageVotes = (averageVotes(array, "D") / statistics.democrats.numberOfMembers).toFixed(2);
@@ -87,6 +89,7 @@ function normalizer(array) {
         statistics.independents.averageVotes = 0;
     }
 }
+
 // Created the table "glance" based on the results above
 function createTableGlance(object) {
     var tbody = document.getElementById("table-glance");
@@ -115,4 +118,78 @@ function missedVotes(members, letter) {
         }
     }
     return missedVotesByParty;
+}
+
+// Creates least/most engaged arrays
+function leastEngagedMembers(array, criteria) {
+    var sortedArray = array.sort(function (a, b) { return a[criteria] - b[criteria] });
+    var arraySortedMissedVotes = [];
+    for (var i = 0; i < sortedArray.length; i++) {
+        if (i < sortedArray.length / 10) {
+            arraySortedMissedVotes.push(sortedArray[i]);
+        } else if (sortedArray[i] == sortedArray[i - 1]) {
+            arraySortedMissedVotes.push(sortedArray[i]);
+        } else {
+            break;
+        }
+    }
+    return arraySortedMissedVotes;
+}
+function mostEngagedMembers(array, criteria) {
+    var sortedArray = array.sort(function (a, b) { return a[criteria] - b[criteria] });
+    var reversedSortedArray = sortedArray.reverse();
+    var arraySortedMissedVotes = [];
+    for (var i = 0; i < reversedSortedArray.length; i++) {
+        if (i < reversedSortedArray.length / 10) {
+            arraySortedMissedVotes.push(reversedSortedArray[i]);
+        } else if (reversedSortedArray[i] == reversedSortedArray[i - 1]) {
+            arraySortedMissedVotes.push(reversedSortedArray[i]);
+        } else {
+            break;
+        }
+    }
+    return arraySortedMissedVotes;
+}
+
+// Gets full name of members with URL
+function getMembersName(member) {
+    var lastName = member.last_name;
+    // var firstName = member.first_name;
+    // var middleName = member.middle_name;
+    // if (middleName == null) {
+    //     middleName = "";
+    // }
+    // console.log(lastName, firstName, middleName);
+    // return lastName + ", " + firstName + " " + middleName;
+    // return `${lastName}, ${firstName} ${middleName}`;
+    return lastName;
+}
+
+function createTableEngage(array, idelement) {
+    var tbody = document.getElementById(idelement);
+    for (var i = 0; i < array.length; i++) {
+        var tr = document.createElement("tr");
+
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        if (array[i].url != "") {
+            var membersUrl = document.createElement("a");
+            membersUrl.setAttribute("href", array[i].url);
+
+            membersUrl.setAttribute("target", "_blank");
+            membersUrl.innerHTML = getMembersName(array[i]);
+
+            td1.append(membersUrl);
+        }
+        else {
+            td1.append(getMembersName(array[i]));
+        }
+
+        td2.innerHTML = array[i].missed_votes;
+        td3.innerHTML = array[i].missed_votes_pct;
+
+        tr.append(td1, td2, td3);
+        tbody.append(tr);
+    }
 }
