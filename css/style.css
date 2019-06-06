@@ -38,4 +38,16 @@
 }
 /* ****** READ MORE ****** */
 #more {display: none;}
-
+/* ****** FILTERS ****** */
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px;
+    padding-top: 10px;
+    align-items: stretch;
+}
+.party {
+    display: flex;
+    flex-direction: row;
+}
