@@ -116,9 +116,9 @@ function leastEngagedMembers(array, criteria) {
     var sortedArray = array.sort(function (a, b) { return a[criteria] - b[criteria] });
     var arraySortedMissedVotes = [];
     for (var i = 0; i < sortedArray.length; i++) {
-        if (i <= sortedArray.length / 10) {
+        if (i < sortedArray.length / 10) {
             arraySortedMissedVotes.push(sortedArray[i]);
-        } else if (sortedArray[i] == sortedArray[i - 1]) {
+        } else if (sortedArray[i][criteria] == sortedArray[i - 1][criteria]) {
             arraySortedMissedVotes.push(sortedArray[i]);
         } else {
             break;
@@ -131,9 +131,9 @@ function mostEngagedMembers(array, criteria) {
     var reversedSortedArray = sortedArray.reverse();
     var arraySortedMissedVotes = [];
     for (var i = 0; i < reversedSortedArray.length; i++) {
-        if (i <= reversedSortedArray.length / 10) {
+        if (i < reversedSortedArray.length / 10) {
             arraySortedMissedVotes.push(reversedSortedArray[i]);
-        } else if (reversedSortedArray[i] == reversedSortedArray[i - 1]) {
+        } else if (reversedSortedArray[i][criteria] == reversedSortedArray[i - 1][criteria]) {
             arraySortedMissedVotes.push(reversedSortedArray[i]);
         } else {
             break;

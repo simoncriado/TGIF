@@ -10,7 +10,7 @@ function getMembersName(member) {
     if (middleName == null) {
         middleName = "";
     }
-    console.log(lastName, firstName, middleName);
+    // console.log(lastName, firstName, middleName);
     // return lastName + ", " + firstName + " " + middleName;
     return `${lastName}, ${firstName} ${middleName}`;
 }
@@ -64,4 +64,15 @@ function myFunction() {
         btnText.innerHTML = "Read less";
         moreText.style.display = "inline";
     }
+}
+
+// filters("republican", checking());
+// function checking() {
+//     console.log("checking");
+// }
+
+
+function filters(id, someFunction) {
+    document.getElementById(id).addEventListener("click", someFunction);
+    console.log("checking");
 }
