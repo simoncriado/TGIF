@@ -77,46 +77,46 @@
                 the
                 House.</p>
         </div>
-        <div class="filters navbar navbar-expand-lg navbar-light bg-light"">
+        <div class="filters navbar navbar-expand-lg navbar-light bg-light">
             <div class=" party">
-            <div>
-                <h5>Filter by Party:</h5>
+                <div>
+                    <h5>Filter by Party:</h5>
+                </div>
+                <div>
+                    <label>
+                        <input id="republican" type="checkbox" name="filterMembers" value="republican"> Republican
+                    </label>
+                    <label>
+                        <input id="democrat" type="checkbox" name="filterMembers" value="democrat"> Democrat
+                    </label>
+                    <label>
+                        <input id="independent" type="checkbox" name="filterMembers" value="independent"> Independent
+                    </label>
+                </div>
             </div>
             <div>
-                <label>
-                    <input id="republican" type="checkbox" name="republican" value="republican"> Republican
-                </label>
-                <label>
-                    <input id="democrat" type="checkbox" name="democrat" value="democrat"> Democrat
-                </label>
-                <label>
-                    <input id="independent" type="checkbox" name="independent" value="independent"> Independent
-                </label>
+                <div class="state">
+                    <h5>Filter by State: aquí irá el scroll-down</h5>
+                </div>
+                <div>
+
+                </div>
             </div>
         </div>
         <div>
-            <div class="state">
-                <h5>Filter by State: aquí irá el scroll-down</h5>
-            </div>
-            <div>
-
-            </div>
+            <table id="senate-data" class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Members</th>
+                        <th>Party</th>
+                        <th>State</th>
+                        <th>Seniority</th>
+                        <th>Total votes</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
         </div>
-    </div>
-    <div>
-        <table id="senate-data" class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Members</th>
-                    <th>Party</th>
-                    <th>State</th>
-                    <th>Seniority</th>
-                    <th>Total votes</th>
-                </tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
-    </div>
     </div>
     <footer class="page-footer font-small blue-grey lighten-5">
         <div class="footer-copyright text-center text-black-50 py-3">© 2016 TGIF | All Rights Reserved
