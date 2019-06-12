@@ -1,4 +1,5 @@
 var arrayOfMembers = data.results[0].members;
+var arrayOfStates = data.results[0].members[0].state;
 
 document.getElementById("R").addEventListener("click", function () {
     filteringMembers(arrayOfMembers);
@@ -10,6 +11,12 @@ document.getElementById("I").addEventListener("click", function () {
     filteringMembers(arrayOfMembers);
 });
 createTable(arrayOfMembers);
+
+statesMenu(arrayOfMembers);
+
+document.getElementById("dropDownMenu").addEventListener("change", function () {
+    checking();
+});
 
 // Creates the table of members FILTERED BY PARTY AND IF CHECKBOXES CHECKED!!
 function filteringMembers(members) {
@@ -28,6 +35,28 @@ function filteringMembers(members) {
             }
         }
         createTable(filteredArray);
+    }
+}
+
+function filteringStates() {
+
+}
+
+// Creates dropdown-menu with all States
+function statesMenu(members) {
+    var dropDownMenu = document.getElementById("dropDownMenu");
+    var states = [];
+    for (var i = 0; i < members.length; i++) {
+        if (!states.includes(members[i].state)) {
+            states.push(members[i].state);
+        }
+    }
+    states.sort();
+    for (var j = 0; j < states.length; j++) {
+        var option = document.createElement("option");
+
+        option.innerHTML = states[j];
+        dropDownMenu.append(option);
     }
 }
 
