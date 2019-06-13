@@ -39,6 +39,10 @@
 a {
     color: rgb(32, 117, 156);
 }
+.error {
+text-align: center;
+color: rgb(32, 117, 156);
+}
 /* ****** READ MORE ****** */
 #more {display: none;}
 /* ****** FILTERS ****** */

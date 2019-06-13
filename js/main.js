@@ -87,17 +87,15 @@ function getMembersName(member) {
     // return lastName + ", " + firstName + " " + middleName;
     return `${lastName}, ${firstName} ${middleName}`;
 }
-
-// displayblock/displaynone
 // Creates the table of members
 function createTable(members) {
     var tbody = document.getElementById("table-body");
+    var error = document.getElementById("error");
     tbody.innerHTML = "";
     if (members.length == 0) {
-        var error = document.getElementById("error");
-        error.style = "display-block";
+        error.style = "display:block";
     } else {
-        error.style = "display-none";
+        error.style = "display:none";
         for (var i = 0; i < members.length; i++) {
             var tr = document.createElement("tr");
 
