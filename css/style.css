@@ -36,6 +36,9 @@
 .firstTable {
     padding-right: 30px;
 }
+a {
+    color: rgb(32, 117, 156);
+}
 /* ****** READ MORE ****** */
 #more {display: none;}
 /* ****** FILTERS ****** */

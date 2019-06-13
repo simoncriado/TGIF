@@ -20,8 +20,7 @@ function init() {
         filteringMembers(arrayOfMembers);
     });
 }
-
-// Creates the table of members FILTERED BY PARTY AND IF CHECKBOXES CHECKED!!
+// Members FILTERED BY PARTY AND IF CHECKBOXES CHECKED!!
 function filteringMembers(members) {
     var filteredArray = [];
     var checkedValues = [];
@@ -42,8 +41,7 @@ function filteringMembers(members) {
         filteringStates(filteredArray);
     }
 }
-
-// Creates the table of members FILTERED BY STATE!!
+// Creates the table of members FILTERED BY STATE (going through the filtering by party)!
 function filteringStates(members) {
     var filteredArray = [];
     var selectedValue = document.getElementById("dropDownMenu").value;
@@ -59,7 +57,6 @@ function filteringStates(members) {
         createTable(filteredArray);
     }
 }
-
 // Creates dropdown-menu with all States
 function statesMenu(members) {
     var dropDownMenu = document.getElementById("dropDownMenu");
@@ -78,7 +75,6 @@ function statesMenu(members) {
         dropDownMenu.append(option);
     }
 }
-
 // Returns members full name
 function getMembersName(member) {
     var lastName = member.last_name;
@@ -92,42 +88,47 @@ function getMembersName(member) {
     return `${lastName}, ${firstName} ${middleName}`;
 }
 
+// displayblock/displaynone
 // Creates the table of members
 function createTable(members) {
     var tbody = document.getElementById("table-body");
     tbody.innerHTML = "";
+    if (members.length == 0) {
+        var error = document.getElementById("error");
+        error.style = "display-block";
+    } else {
+        error.style = "display-none";
+        for (var i = 0; i < members.length; i++) {
+            var tr = document.createElement("tr");
 
-    for (var i = 0; i < members.length; i++) {
-        var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+            var td4 = document.createElement("td");
+            var td5 = document.createElement("td");
+            if (members[i].url != "") {
+                var membersUrl = document.createElement("a");
+                membersUrl.setAttribute("href", members[i].url);
 
-        var td1 = document.createElement("td");
-        var td2 = document.createElement("td");
-        var td3 = document.createElement("td");
-        var td4 = document.createElement("td");
-        var td5 = document.createElement("td");
-        if (members[i].url != "") {
-            var membersUrl = document.createElement("a");
-            membersUrl.setAttribute("href", members[i].url);
+                membersUrl.setAttribute("target", "_blank");
+                membersUrl.innerHTML = getMembersName(members[i]);
 
-            membersUrl.setAttribute("target", "_blank");
-            membersUrl.innerHTML = getMembersName(members[i]);
+                td1.append(membersUrl);
+            }
+            else {
+                td1.append(getMembersName(members[i]));
+            }
 
-            td1.append(membersUrl);
+            td2.innerHTML = members[i].party;
+            td3.innerHTML = members[i].state;
+            td4.innerHTML = members[i].seniority;
+            td5.innerHTML = `${members[i].votes_with_party_pct}%`;
+            tr.append(td1, td2, td3, td4, td5);
+
+            tbody.append(tr);
         }
-        else {
-            td1.append(getMembersName(members[i]));
-        }
-
-        td2.innerHTML = members[i].party;
-        td3.innerHTML = members[i].state;
-        td4.innerHTML = members[i].seniority;
-        td5.innerHTML = `${members[i].votes_with_party_pct}%`;
-        tr.append(td1, td2, td3, td4, td5);
-
-        tbody.append(tr);
     }
 }
-
 // Read more and read less button
 function myFunction() {
     var dots = document.getElementById("dots");
