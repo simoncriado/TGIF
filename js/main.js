@@ -1,22 +1,25 @@
 var arrayOfMembers = data.results[0].members;
-var arrayOfStates = data.results[0].members[0].state;
 
-document.getElementById("R").addEventListener("click", function () {
-    filteringMembers(arrayOfMembers);
-});
-document.getElementById("D").addEventListener("click", function () {
-    filteringMembers(arrayOfMembers);
-});
-document.getElementById("I").addEventListener("click", function () {
-    filteringMembers(arrayOfMembers);
-});
+init();
 createTable(arrayOfMembers);
-
 statesMenu(arrayOfMembers);
 
-document.getElementById("dropDownMenu").addEventListener("change", function () {
-    filteringStates(arrayOfMembers);
-});
+// Iniciates all the Event Listeners
+function init() {
+    document.getElementById("R").addEventListener("click", function () {
+        filteringMembers(arrayOfMembers);
+    });
+    document.getElementById("D").addEventListener("click", function () {
+        filteringMembers(arrayOfMembers);
+    });
+    document.getElementById("I").addEventListener("click", function () {
+        filteringMembers(arrayOfMembers);
+    });
+    document.getElementById("dropDownMenu").addEventListener("change", function () {
+        // filteringStates(arrayOfMembers);
+        filteringMembers(arrayOfMembers);
+    });
+}
 
 // Creates the table of members FILTERED BY PARTY AND IF CHECKBOXES CHECKED!!
 function filteringMembers(members) {
@@ -27,14 +30,16 @@ function filteringMembers(members) {
         checkedValues.push(checked[i].value);
     }
     if (checkedValues.length == 0) {
-        createTable(members);
+        // createTable(members);
+        filteringStates(members);
     } else {
         for (var i = 0; i < members.length; i++) {
             if (checkedValues.includes(members[i].party)) {
                 filteredArray.push(members[i]);
             }
         }
-        createTable(filteredArray);
+        // createTable(filteredArray);
+        filteringStates(filteredArray);
     }
 }
 
