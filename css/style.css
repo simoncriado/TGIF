@@ -62,3 +62,19 @@ color: rgb(32, 117, 156);
     padding-right: 10px;
     padding-left: 10px;
 }
+.loader {
+    position: fixed;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid rgb(32, 117, 156);
+    top: 50%;
+    left: 45%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+ 

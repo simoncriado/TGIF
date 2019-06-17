@@ -23,30 +23,61 @@ var statistics = {
         averageVotes: 0,
     }
 };
-var arrayOfMembers = data.results[0].members;
-
-// Sets total members by party
-statistics.democrats.numberOfMembers = numberOfMembers(arrayOfMembers, "D");
-statistics.republicans.numberOfMembers = numberOfMembers(arrayOfMembers, "R");
-statistics.independents.numberOfMembers = numberOfMembers(arrayOfMembers, "I");
-// Sets average votes by party
-normalizer(arrayOfMembers);
-// Sets totals
-statistics.totals.numberOfMembers = arrayOfMembers.length;
-var totalVotes = 0;
-for (var i = 0; i < arrayOfMembers.length; i++) {
-    totalVotes += arrayOfMembers[i].votes_with_party_pct;
-}
-statistics.totals.averageVotes = (totalVotes / arrayOfMembers.length).toFixed(2);
-
-createTableGlance(statistics);
-if (document.URL.includes("attendance")) {
-    createTableEngage(leastEngagedMembers(arrayOfMembers, "missed_votes_pct"), "tbody-mostengage");
-    createTableEngage(mostEngagedMembers(arrayOfMembers, "missed_votes_pct"), "tbody-engage");
+var containerHidding = document.getElementById("containerHidding");
+containerHidding.style.display = "none";
+var arrayOfMembers;
+var proPublicaLink;
+if (document.URL.includes("senate")) {
+    var proPublicaLink = "https://api.propublica.org/congress/v1/113/senate/members.json";
 } else {
-    createTableLoyal(leastEngagedMembers(arrayOfMembers, "votes_with_party_pct"), "tbody-leastLoyal");
-    createTableLoyal(mostEngagedMembers(arrayOfMembers, "votes_with_party_pct"), "tbody-mostLoyal");
-};
+    var proPublicaLink = "https://api.propublica.org/congress/v1/113/house/members.json";
+}
+
+fetch(proPublicaLink, {
+    method: "GET",
+    headers: {
+        'X-API-key': 'wD1090Q7KW5NBjJHRE4UNV9PPqUvHGTaN5qnA0xy'
+    }
+}).then(function (response) {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error(response.statusText);
+}).then(function (json) {
+    data = json;
+    arrayOfMembers = json.results[0].members;
+
+    executingFunctions();
+    loader.style = "display:none";
+    containerHidding.style.display = "block";
+}).catch(function (error) {
+    console.log("Request failed: " + error.message);
+});
+
+function executingFunctions() {
+    // Sets total members by party
+    statistics.democrats.numberOfMembers = numberOfMembers(arrayOfMembers, "D");
+    statistics.republicans.numberOfMembers = numberOfMembers(arrayOfMembers, "R");
+    statistics.independents.numberOfMembers = numberOfMembers(arrayOfMembers, "I");
+    // Sets average votes by party
+    normalizer(arrayOfMembers);
+    // Sets totals
+    statistics.totals.numberOfMembers = arrayOfMembers.length;
+    var totalVotes = 0;
+    for (var i = 0; i < arrayOfMembers.length; i++) {
+        totalVotes += arrayOfMembers[i].votes_with_party_pct;
+    }
+    statistics.totals.averageVotes = (totalVotes / arrayOfMembers.length).toFixed(2);
+
+    createTableGlance(statistics);
+    if (document.URL.includes("attendance")) {
+        createTableEngage(leastEngagedMembers(arrayOfMembers, "missed_votes_pct"), "tbody-mostengage");
+        createTableEngage(mostEngagedMembers(arrayOfMembers, "missed_votes_pct"), "tbody-engage");
+    } else {
+        createTableLoyal(leastEngagedMembers(arrayOfMembers, "votes_with_party_pct"), "tbody-leastLoyal");
+        createTableLoyal(mostEngagedMembers(arrayOfMembers, "votes_with_party_pct"), "tbody-mostLoyal");
+    };
+}
 
 // Gets the number of members based on each party
 function numberOfMembers(members, letter) {

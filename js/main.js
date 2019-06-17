@@ -1,9 +1,19 @@
 var data;
+var loader = document.getElementById("loader");
+var containerHidding = document.getElementById("containerHidding");
+containerHidding.style.display = "none";
+var arrayOfMembers;
+var proPublicaLink;
+if (document.URL.includes("senate")) {
+    var proPublicaLink = "https://api.propublica.org/congress/v1/113/senate/members.json";
+} else {
+    var proPublicaLink = "https://api.propublica.org/congress/v1/113/house/members.json";
+}
 
-fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+fetch(proPublicaLink, {
     method: "GET",
     headers: {
-        "X-API-key": "wD1090Q7KW5NBjJHRE4UNV9PPqUvHGTaN5qnA0xy"
+        'X-API-key': 'wD1090Q7KW5NBjJHRE4UNV9PPqUvHGTaN5qnA0xy'
     }
 }).then(function (response) {
     if (response.ok) {
@@ -12,17 +22,15 @@ fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
     throw new Error(response.statusText);
 }).then(function (json) {
     data = json;
-    console.log(data);
+    arrayOfMembers = json.results[0].members;
     init();
     createTable(arrayOfMembers);
     statesMenu(arrayOfMembers);
+    loader.style = "display:none";
+    containerHidding.style.display = "block";
 }).catch(function (error) {
     console.log("Request failed: " + error.message);
-});
-
-console.log(data);
-
-var arrayOfMembers = data.results[0].members;
+})
 
 // Iniciates all the Event Listeners
 function init() {
