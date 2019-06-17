@@ -1,8 +1,28 @@
-var arrayOfMembers = data.results[0].members;
+var data;
 
-init();
-createTable(arrayOfMembers);
-statesMenu(arrayOfMembers);
+fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+    method: "GET",
+    headers: {
+        "X-API-key": "wD1090Q7KW5NBjJHRE4UNV9PPqUvHGTaN5qnA0xy"
+    }
+}).then(function (response) {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error(response.statusText);
+}).then(function (json) {
+    data = json;
+    console.log(data);
+    init();
+    createTable(arrayOfMembers);
+    statesMenu(arrayOfMembers);
+}).catch(function (error) {
+    console.log("Request failed: " + error.message);
+});
+
+console.log(data);
+
+var arrayOfMembers = data.results[0].members;
 
 // Iniciates all the Event Listeners
 function init() {
@@ -41,7 +61,7 @@ function filteringMembers(members) {
         filteringStates(filteredArray);
     }
 }
-// Creates the table of members FILTERED BY STATE (going through the filtering by party)!
+// Creates the table of members FILTERED BY STATE (going through the filter by party)!
 function filteringStates(members) {
     var filteredArray = [];
     var selectedValue = document.getElementById("dropDownMenu").value;
