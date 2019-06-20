@@ -1,3 +1,5 @@
+// TESTING VUE
+// TESTING VUE
 var data;
 var loader = document.getElementById("loader");
 var containerHidding = document.getElementById("containerHidding");
