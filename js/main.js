@@ -48,7 +48,7 @@ function init() {
         filteringMembers(arrayOfMembers);
     });
 }
-// Members FILTERED BY PARTY AND IF CHECKBOXES CHECKED!!
+// Members FILTERED BY PARTY AND IF CHECKBOXES CHECKED!! (first filter)
 function filteringMembers(members) {
     var filteredArray = [];
     var checkedValues = [];
@@ -57,7 +57,6 @@ function filteringMembers(members) {
         checkedValues.push(checked[i].value);
     }
     if (checkedValues.length == 0) {
-        // createTable(members);
         filteringStates(members);
     } else {
         for (var i = 0; i < members.length; i++) {
@@ -65,13 +64,13 @@ function filteringMembers(members) {
                 filteredArray.push(members[i]);
             }
         }
-        // createTable(filteredArray);
         filteringStates(filteredArray);
     }
 }
-// Creates the table of members FILTERED BY STATE (going through the filter by party)!
+// Creates the table of members FILTERED BY STATE (second filter)!
 function filteringStates(members) {
     var filteredArray = [];
+    // Value are the letters of the State
     var selectedValue = document.getElementById("dropDownMenu").value;
 
     if (selectedValue == "ALL") {
@@ -120,6 +119,7 @@ function createTable(members) {
     var tbody = document.getElementById("table-body");
     var error = document.getElementById("error");
     tbody.innerHTML = "";
+    // If not match found, the message should be shown
     if (members.length == 0) {
         error.style = "display:block";
     } else {
@@ -160,11 +160,12 @@ function myFunction() {
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
     var btnText = document.getElementById("myBtn");
-
+    // Cuando pulso el botón se va directamente al "else" porque dots.style se está mostrando
     if (dots.style.display === "none") {
-        dots.style.display = "inline";
+        dots.style.display = "block";
         btnText.innerHTML = "Show more";
         moreText.style.display = "none";
+        // Cuando vuelvo a pulsar el botón dots.style es NONE y por eso se para en el "if"
     } else {
         dots.style.display = "none";
         btnText.innerHTML = "Show less";

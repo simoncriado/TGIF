@@ -144,11 +144,15 @@ function createTableGlance(object) {
 
 // Creates least/most engaged arrays
 function leastEngagedMembers(array, criteria) {
+    // Sorts the array based on the criteria (ej. missed votes)
     var sortedArray = array.sort(function (a, b) { return a[criteria] - b[criteria] });
     var arraySortedMissedVotes = [];
     for (var i = 0; i < sortedArray.length; i++) {
+        // If i inside the lower 10% -> push (happening until i=44 (House))
+        // When i= [45] it jumps to the next if
         if (i < sortedArray.length / 10) {
             arraySortedMissedVotes.push(sortedArray[i]);
+            // If the criteria of i (ej 45) is the same as the criteria of i-1 (ej 44) -> push
         } else if (sortedArray[i][criteria] == sortedArray[i - 1][criteria]) {
             arraySortedMissedVotes.push(sortedArray[i]);
         } else {
